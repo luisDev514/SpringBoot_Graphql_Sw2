@@ -1,0 +1,180 @@
+type Query {
+
+    #Users
+    finUserById(UserId:String):User
+
+    #Beds
+    findBedById(bedId: String) : Bed
+    findAllBeds : [Bed]
+
+    #Accomodatiosns
+    findAccomodationById(accomodationId: String) : Accomodation
+    findAllAccomodations : [Accomodation]
+
+    #Accomodations by User
+    findAccomodationsByUserId(userId: String): [Accomodation]
+
+    #OpinionForms
+    findOpinionFormById(opinionFormId: String) : OpinionForm
+    findAllOpinionForms : [OpinionForm]
+
+    #Offers
+    findOfferById(offerId: String) : Offer
+    findAllOffers : [Offer]
+    findOffersByAccomodationId(accomodationId: String) : [Offer]
+
+
+
+}
+
+
+type Mutation{
+    #Beds
+    createBed(inputBed: InputBed) : Bed,
+    updateBed(bedId: String, inputBed: InputBed) : Bed,
+    deleteBedById(bedId: String) : String
+
+    #Accomodations
+
+    createAccomodation(inputAccomodation: InputAcommodation) : Accomodation,
+    updateAccomodation(accomodationId: String, inputAccomodation: InputAcommodation) : Accomodation,
+    deleteAccomodationById(accomodationId: String) : String
+
+
+    #OpinionForms
+    createOpinionForm(inputOpinionForm: InputOpinionForm) : OpinionForm,
+    updateOpinionForm(opinionFormId: String, inputOpinionForm: InputOpinionForm) : OpinionForm,
+    deleteOpinionFormById(opinionFormId: String) : String
+
+    #Offers
+    createOffer(inputOffer: InputOffer) : Offer,
+    updateOffer(offerId: String, inputOffer: InputOffer) : Offer,
+    deleteOfferById(offerId: String) : String
+
+
+
+
+
+
+}
+
+
+
+type Bed{
+  id: ID,
+  title: String,
+  service: String
+}
+
+type Accomodation{
+  id: ID,
+    attention_number: Int,
+    owner: String,
+    description: String,
+    company: String,
+    imageUrl: String,
+    stars: Int,
+    schedule: String,
+    page: String,
+    quantity: Int,
+    description_services: String,
+    typeRoom: [String],
+    instagramUrl: String,
+    facebookUrl: String,
+    webUrl: String,
+    coordinates: String,
+    idUser: String
+
+
+
+}
+
+type OpinionForm{
+    id: ID,
+    state: Boolean,
+    origin: String,
+    destination: String,
+    accommodationName: String,
+    tripOpinion: String,
+    destinyOpinion: String,
+    reasonTrip: String,
+    idUser: String,
+    user: User
+
+}
+
+type Offer{
+    id: ID,
+    title: String,
+    price: Int,
+    discount: Int,
+    imageUrl: String,
+    beds: Int,
+    descriptionServices: String,
+    typeRoom: [String],
+    state: String,
+    idAccomodation: String,
+    accomodation: Accomodation
+
+
+}
+
+type User{
+    id: ID,
+    name: String,
+    email: String,
+    password: String,
+    role: String
+}
+
+input InputBed{
+  title: String,
+  service: String
+}
+
+input InputAcommodation{
+    attention_number: Int,
+    owner: String,
+    description: String,
+    company: String,
+    imageUrl: String,
+    stars: Int,
+    schedule: String,
+    page: String,
+    quantity: Int,
+    description_services: String,
+    typeRoom: [String]
+    instagramUrl: String,
+    facebookUrl: String,
+    webUrl: String,
+    coordinates: String,
+    idUser: String
+}
+
+input InputOpinionForm{
+    state: Boolean,
+    origin: String,
+    destination: String,
+    accommodationName: String,
+    tripOpinion: String,
+    destinyOpinion: String,
+    reasonTrip: String,
+    idUser: String
+
+
+}
+
+input InputOffer{
+    title: String,
+    price: Int,
+    discount: Int,
+    imageUrl: String,
+    beds: Int,
+    descriptionServices: String,
+    typeRoom: [String],
+    state: String,
+    idAccomodation: String,
+    accomodation: InputAcommodation
+
+
+}
